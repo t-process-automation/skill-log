@@ -1,0 +1,51 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+    {% if post.image %}
+        <img src="{{ post.image.url }}" class="img-fluid mb-3">
+    {% endif %}
+
+    <h2>Post Detail</h2>
+    <article>
+        <h2>{{ post.title }}</h2>
+
+        <p>{{ post.get_category_display }}</p>
+        <p>Author: {{ post.author }}</p>
+        <p>{{ post.created_at|date:"M d, Y H:i" }}</p>
+
+        <div>
+            {{ html_body|safe }}
+        </div>
+    </article>
+
+    <hr>
+
+    <h3>Comments</h3>
+
+    {% for comment in comments %}
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>{{ comment.body }}</p>
+                <small>{{ comment.author }} / {{ comment.created_at|date:"M d, Y H:i" }}</small>
+            </div>
+        </div>
+    {% empty %}
+        <p>No comments yet.</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    
+    <form method="post" action="{% url 'add_comment' post.slug %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+{% endif %}
+
+    {% if user == post.author %}
+        <p><a href="{% url 'post_edit' post.slug %}">Edit</a></p>
+        <p><a href="{% url 'post_delete' post.slug %}">Delete</a></p>
+    {% endif %}
+
+    <p><a href="{% url 'post_list' %}">Back to list</a></p>
+{% endblock %}
