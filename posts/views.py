@@ -3,9 +3,24 @@ from django.http import HttpResponseForbidden
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
 import markdown
 
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/signup.html', {
+        'form': form
+    })
 
 def post_list(request):
     query = request.GET.get('q')

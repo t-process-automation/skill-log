@@ -11,4 +11,5 @@ urlpatterns = [
 
     path('category/<str:category>/', views.post_category, name='post_category'),
     path('new/', views.post_create, name='post_create'),
+    path('signup/', views.signup, name='signup'),
 ]
