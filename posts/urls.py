@@ -12,4 +12,6 @@ urlpatterns = [
     path('category/<str:category>/', views.post_category, name='post_category'),
     path('new/', views.post_create, name='post_create'),
     path('signup/', views.signup, name='signup'),
+    path('profile/edit/', views.profile_edit, name='profile_edit'),
+    path('profile/<str:username>/', views.profile_detail, name='profile_detail'),
 ]

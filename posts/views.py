@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
-from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .models import Post, Comment, Profile
+from .forms import PostForm, CommentForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 import markdown
 
 
@@ -140,3 +141,35 @@ def add_comment(request, slug):
             comment.save()
 
     return redirect('post_detail', slug=post.slug)
+
+
+@login_required
+def profile_edit(request):
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(
+            request.POST,
+            request.FILES,
+            instance=profile
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect('profile_detail', username=request.user.username)
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'registration/profile_form.html', {
+        'form': form
+    })
+
+
+def profile_detail(request, username):
+    user = get_object_or_404(User, username=username)
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    return render(request, 'registration/profile_detail.html', {
+        'profile_user': user,
+        'profile': profile
+    })
