@@ -6,3 +6,9 @@ venv\Scripts\activate
 
 username:admin
 password:Admin12345
+
+https://skill-log.onrender.com
+
+git add .
+git commit -m "Add postgres support"
+git push
