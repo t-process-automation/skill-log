@@ -12,3 +12,8 @@ https://skill-log.onrender.com
 git add .
 git commit -m "Add postgres support"
 git push
+
+■Django admin
+Username：ban
+Email：awoniyosi08@gmail.com
+Password：takemoto82
