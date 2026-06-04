@@ -30,7 +30,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-    'skill-log-1.onrender.com',
+    "skill-log.net",
+    "www.skill-log.net",
+    "52.193.128.120",
+    "127.0.0.1",
+    "localhost",
 ]
 
 
