@@ -45,6 +45,17 @@
                             <a class="nav-link" href="{% url 'post_category' 'django' %}">Django</a>
                             <a class="nav-link" href="{% url 'post_category' 'automation' %}">Automation</a>
                             <a class="nav-link" href="{% url 'post_category' 'fx' %}">FX</a>
+
+                            <div class="ms-auto">
+                                {% if user.is_authenticated %}
+                                    <form method="post" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                            Logout
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
                         </div>
 
                     </div>
