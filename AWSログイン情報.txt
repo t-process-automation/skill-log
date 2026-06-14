@@ -1,0 +1,32 @@
+AWSアカウント
+アドレス：takemoto82@icloud.com
+パスワード：Takemoto82@
+
+IAMユーザー
+Account ID：709297671773
+ユーザー名：ban-admin
+パスワード：Takemoto82@
+
+GitHub
+ユーザー名：awoniyosi08@gmail.com
+パスワード：Taruto1021
+
+Render
+ユーザー名：awoniyosi08@gmail.com
+パスワード：Taruto1021
+
+
+Lightsail ターミナル
+仮想環境
+python3 -m venv venv
+source venv/bin/activate
+
+ディレクトリ異動
+cd ~/app/skill-log
+source venv/bin/activate
+
+nano config/settings.py
+
+http://52.193.128.120:8000
+https://skill-log.net/
+

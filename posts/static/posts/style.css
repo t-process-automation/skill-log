@@ -29,13 +29,14 @@ header h1 a {
     flex: 1;
     text-align: center;
     font-weight: 600;
+    font-size: 1.2rem;
     border-radius: 10px;
     padding: 10px 14px !important;
 }
 
 .nav-link:hover {
-    background: #2563eb;
-    color: white !important;
+    background: transparent;
+    color: #1f2937 !important;
 }
 
 .navbar-toggler {
@@ -115,4 +116,13 @@ input[type="text"] {
 .text-muted {
     color: #6b7280 !important;
     font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    resize: vertical;
 }
