@@ -30,3 +30,27 @@ nano config/settings.py
 http://52.193.128.120:8000
 https://skill-log.net/
 
+
+■ローカルでgit commit後にAWS側で引く方法
+現在の場所へ移動：
+　cd ~/app/skill-log
+
+最新コード取得：
+　git pull origin main
+
+取得できたら依存関係を更新：
+　source venv/bin/activate
+　pip install -r requirements.txt
+
+DB変更がある場合のみ：
+　python manage.py migrate
+
+静的ファイル更新：
+　python manage.py collectstatic --noinput
+
+再起動：
+　sudo systemctl restart skill-log
+　sudo systemctl status skill-log
+
+念のためNginxも再起動：
+　sudo systemctl restart nginx

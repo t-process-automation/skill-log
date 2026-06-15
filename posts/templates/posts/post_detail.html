@@ -5,13 +5,14 @@
         <img src="{{ post.image.url }}" class="img-fluid mb-3">
     {% endif %}
 
-    <h2>Post Detail</h2>
     <article>
         <h2>{{ post.title }}</h2>
 
-        <p>{{ post.get_category_display }}</p>
-        <p>Author: {{ post.author }}</p>
-        <p>{{ post.created_at|date:"M d, Y H:i" }}</p>
+        <div class="d-flex gap-4 text-muted mb-3">
+            <span>{{ post.get_category_display }}</span>
+            <span>Author: {{ post.author }}</span>
+            <span>{{ post.created_at|date:"M d, Y" }}</span>
+        </div>
 
         <div>
             {{ html_body|safe }}
