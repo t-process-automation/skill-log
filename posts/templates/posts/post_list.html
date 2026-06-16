@@ -2,15 +2,20 @@
 
 {% block content %}
 
-    <h2>Posts</h2>
-
-    <form method="get" class="mb-4">
-        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search posts">
-        <button type="submit">Search</button>
+    <form method="get" class="d-flex gap-2 mb-4">
+        <form method="get" class="d-flex flex-grow-1">
+            <input
+                type="text"
+                name="q"
+                value="{{ query|default:'' }}"
+                placeholder="Search posts"
+                class="form-control me-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </form>
 
     {% for post in page_obj %}
-        <article class="card mb-3">
+        <article class="card post-card mb-3">
             <div class="card-body">
                 <h2 class="card-title">
                     <a href="{% url 'post_detail' post.slug %}">
@@ -23,27 +28,28 @@
                 </p>
 
                 <p>
-                    {{ post.body|truncatechars:100 }}
+                    {{ post.body|truncatechars:50 }}
                 </p>
             </div>
         </article>
 
     {% empty %}
         <p>No posts yet.</p>
-    {% endfor %}
+        {% endfor %}
 
-    <nav>
-        {% if page_obj.has_previous %}
-            <a href="?q={{ query|default:'' }}&page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+    <div class="pagination-wrapper">
+        <nav>
+            {% if page_obj.has_previous %}
+                <a href="?q={{ query|default:'' }}&page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
 
-        <span>
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
+            <span>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
 
-        {% if page_obj.has_next %}
-            <a href="?q={{ query|default:'' }}&page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
-    </nav>
+            {% if page_obj.has_next %}
+                <a href="?q={{ query|default:'' }}&page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </nav>
 
 {% endblock %}
