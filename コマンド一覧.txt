@@ -1,6 +1,6 @@
 python manage.py runserver
 
-http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/
 
 venv\Scripts\activate
 
@@ -10,7 +10,7 @@ password:Admin12345
 https://skill-log.onrender.com
 
 git add .
-git commit -m "Add postgres support"
+git commit -m "Update"
 git push
 
 ■Django admin
